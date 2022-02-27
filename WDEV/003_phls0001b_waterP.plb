@@ -1,6 +1,7 @@
 create or replace 
 package body phls0001 as
 /*
+--testing for .gitignore
 -- CREATE OR REPLACE
 -- PACKAGE BODY PHLS0001 as
 TO Replace blank lines in files using perl regular expression in ULTRA edit
