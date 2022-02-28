@@ -80,7 +80,7 @@ In Replace window use Check Regular Expression
 **  BUG#           BY   VERS       MM/DD/YYYY   Description
 **  11413B         RNN  3.0.0.97   02/27/2022   Explaning Diff tool and Mereg tool for gitbash.
 **  11413A         RNN  3.0.0.96   01/31/2021   LIHWAP (Low Income Household Water Assistance Program) basis2 changes. 
-**  11137          RNN  3.0.0.95   02/01/2022   Phone number in ìtwo estimated bills in a rowî message on the bill will need to be changed 
+**  11137          RNN  3.0.0.95   02/01/2022   Phone number in ‚Äútwo estimated bills in a row‚Äù message on the bill will need to be changed 
 **  11413          RNN  3.0.0.94   01/31/2021   LIHWAP (Low Income Household Water Assistance Program) basis2 changes. 
 **  10483					 RNN  3.0.0.93   10/18/2021   eBilling: Adjust Pending Payment Window from 10 to 20 days.
 **  11192          RNN  3.0.0.92   06/24/2021   AMI eBilling: basis2 bill messages appearing on bills prematurely.
@@ -6234,7 +6234,11 @@ begin
 				            g_s17_grnt_amnt := nvl(g_s17_grnt_amnt,0) + (-1 * nvl(w_blln.other_tran_amnt,0)); --Since receipt is -ve, multiplying with -1 to make it positive for display purpose.
 				         elsif nvl(w_blln.task_code,'XXX') != 'S17' and nvl(w_oi_tran.fully_reversed_ind,'X') != 'Y' then  --Added 11413A 
 			         	  	w_grnt_rcvd        := nvl(w_grnt_rcvd,0) + nvl(w_blln.other_tran_amnt,0);	  
+<<<<<<< HEAD
 			         	 elsif  nvl(w_blln.task_code,'XXX') != 'S18' and w_oi_tran.fully_reversed_ind != 'Y' then  --Added 11413B	
+=======
+			         	 elsif  nvl(w_blln.task_code,'XXX') != 'S18' and nvl(w_oi_tran.fully_reversed_ind,'X') != 'Y' then  --Added 11413B	
+>>>>>>> 66c556b0f42ce2e6ab3cab4be519b7633dca151c
 				            g_s18_grnt_amnt := nvl(g_s18_grnt_amnt,0) + (-1 * nvl(w_blln.other_tran_amnt,0)); --Since receipt is -ve, multiplying with -1 to make it positive for display purpose.
 								 else
 								 		debug_trace(w_procedure_name, '..Please verify if the grant amount is fully reversed ............. ');	--Added 11413A 	
