@@ -6234,10 +6234,10 @@ begin
 				            g_s17_grnt_amnt := nvl(g_s17_grnt_amnt,0) + (-1 * nvl(w_blln.other_tran_amnt,0)); --Since receipt is -ve, multiplying with -1 to make it positive for display purpose.
 				         elsif nvl(w_blln.task_code,'XXX') != 'S17' and nvl(w_oi_tran.fully_reversed_ind,'X') != 'Y' then  --Added 11413A 
 			         	  	w_grnt_rcvd        := nvl(w_grnt_rcvd,0) + nvl(w_blln.other_tran_amnt,0);	  
-			         	 elsif  nvl(w_blln.task_code,'XXX') != 'S18' and w_oi_tran.fully_reversed_ind != 'Y' then  --Added 11413B	
+			         	 elsif  nvl(w_blln.task_code,'XXX') != 'S18' and nvl(w_oi_tran.fully_reversed_ind,'X') != 'Y' then  --Added 11413B	
 				            g_s18_grnt_amnt := nvl(g_s18_grnt_amnt,0) + (-1 * nvl(w_blln.other_tran_amnt,0)); --Since receipt is -ve, multiplying with -1 to make it positive for display purpose.
-								 else
-								 		debug_trace(w_procedure_name, '..Please verify if the grant amount is fully reversed ............. ');	--Added 11413A 	
+									 else
+									 		debug_trace(w_procedure_name, '..Please verify if the grant amount is fully reversed ............. ');	--Added 11413A 	
 								 		debug_trace(w_procedure_name, '..The grant amount is fully reversed hence not included for message ');	--Added 11413A 
 								 		debug_trace(w_procedure_name, '..Please verify if the grant amount is fully reversed ............. ');	--Added 11413A 
 				         end if;
