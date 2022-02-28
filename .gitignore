@@ -1,3 +1,6 @@
+# files we do not want in repository
 *.bak
 *.dat
 *.txt
+Personal_Folder
+*.exe
