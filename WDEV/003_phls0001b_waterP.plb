@@ -73,11 +73,12 @@ In Replace window use Check Regular Expression
 **
 **
 **/
-    w_version                  varchar2(20) := '3.0.0.96'; -- MUST MATCH LATEST 'VERS' IN HISTORY BELOW!
+    w_version                  varchar2(20) := '3.0.0.97'; -- MUST MATCH LATEST 'VERS' IN HISTORY BELOW!
  --   w_version                     varchar2(20) := '2.0.0.86'; -- MUST MATCH LATEST 'VERS' IN HISTORY BELOW!
  --   w_version                     varchar2(20) := '1.0.0.72';  -- must match latest 'vers' in history below!
 /**
 **  BUG#           BY   VERS       MM/DD/YYYY   Description
+**  11413B         RNN  3.0.0.97   02/27/2022   Explaning Diff tool and Mereg tool for gitbash.
 **  11413A         RNN  3.0.0.96   01/31/2021   LIHWAP (Low Income Household Water Assistance Program) basis2 changes. 
 **  11137          RNN  3.0.0.95   02/01/2022   Phone number in “two estimated bills in a row” message on the bill will need to be changed 
 **  11413          RNN  3.0.0.94   01/31/2021   LIHWAP (Low Income Household Water Assistance Program) basis2 changes. 
@@ -733,6 +734,8 @@ In Replace window use Check Regular Expression
 		g_meter_id										cis_meters.meter_id%type;							 	 --Add 11138
 		g_repl_meter_id							  cis_meters.meter_id%type;							 	 --Add 11138
     g_s17_grnt_amnt								number:= 0;      												 --Add 11413
+    g_s18_grnt_amnt								number:= 0;      												 --Add 11413B
+    
     --
     -- Start Add 10266
     --
@@ -5967,7 +5970,7 @@ begin
          , tran_description                                         -- Add 3706 --For grants proof of concept
          , ifce_text                                                -- Add 3706 --For grants at later date
          , tran_key                                                 -- Add 3706 --For grant at later date
-         , fully_reversed_ind                                       -- Add 11413B
+         , fully_reversed_ind                                       -- Add 11413A
       from cis_transactions
      where tran_id = w_oi_tran_id;
     w_oi_tran                    c_oi_tran%rowtype;                 -- Add 1.0.0.4
@@ -6231,6 +6234,8 @@ begin
 				            g_s17_grnt_amnt := nvl(g_s17_grnt_amnt,0) + (-1 * nvl(w_blln.other_tran_amnt,0)); --Since receipt is -ve, multiplying with -1 to make it positive for display purpose.
 				         elsif nvl(w_blln.task_code,'XXX') != 'S17' and nvl(w_oi_tran.fully_reversed_ind,'X') != 'Y' then  --Added 11413A 
 			         	  	w_grnt_rcvd        := nvl(w_grnt_rcvd,0) + nvl(w_blln.other_tran_amnt,0);	  
+			         	 elsif  nvl(w_blln.task_code,'XXX') != 'S18' and w_oi_tran.fully_reversed_ind != 'Y' then  --Added 11413B	
+				            g_s18_grnt_amnt := nvl(g_s18_grnt_amnt,0) + (-1 * nvl(w_blln.other_tran_amnt,0)); --Since receipt is -ve, multiplying with -1 to make it positive for display purpose.
 								 else
 								 		debug_trace(w_procedure_name, '..Please verify if the grant amount is fully reversed ............. ');	--Added 11413A 	
 								 		debug_trace(w_procedure_name, '..The grant amount is fully reversed hence not included for message ');	--Added 11413A 
