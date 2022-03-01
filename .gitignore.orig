@@ -1,0 +1,10 @@
+# files we do not want in repository
+*.bak
+*.dat
+*.txt
+<<<<<<< HEAD
+Personal_Folder
+*.exe
+=======
+*.dll
+>>>>>>> e468fe22f6116d211263741318c5745a2283d80b
