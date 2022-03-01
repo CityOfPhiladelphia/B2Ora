@@ -5,6 +5,7 @@ TO Replace blank lines in files using perl regular expression  in ULTRA edit
 ^(?:[\t ]*(?:\r?\n|\r))+
 In Ultra edit go to advance --> Search --> Regular Expresion Engine and Select Perl Compatiable Regular Expresion
 In Actual Find/Replace window select above string and replace it with nothing (also select regular expresion check box)
+Hello change
 */
 /*
 **  This report message handling package
